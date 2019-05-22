@@ -8,18 +8,30 @@
 #include <QCoreApplication>
 #include <QEventLoop>
 
+
+
 Bullet::Bullet(QGraphicsScene *scene) : QObject() , QGraphicsPixmapItem (){
 
     this->scene_ = scene;
-    this->setPixmap(QPixmap("/Users/remy.d.w/project/GOT/ressources/Spaceship-shooter-environment/spritesheets/laser-bolts.png"));
-
+    this->setPixmap(QPixmap(BULLET_IMAGE_PATH));
+    this->sound_ = new QMediaPlayer();
+    this->sound_->setMedia(QUrl(BULLET_SOUND_PATH));
     // connect
     QTimer *timer = new QTimer();
-
 
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
 
     timer->start(3);
+}
+
+void Bullet::play()
+{
+    this->sound_->play();
+}
+
+
+QMediaPlayer& Bullet::getSound(){
+    return *sound_;
 }
 
 
@@ -38,7 +50,7 @@ void Bullet::move(){
     for (int i = 0, number_colliders = colliding_items.size(); i < number_colliders ; i++){
 
         if (typeid(*(colliding_items[i])) == typeid(Enemie)){
-
+            GameManager::instance().increaseScore();
             Enemie *enemie = static_cast<Enemie *>(colliding_items[i]);
             enemie->setPixmap(QPixmap("/Users/remy.d.w/project/GOT/ressources/Spaceship-shooter-environment/spritesheets/explosion.png"));
             // wait one seconde before removing the items

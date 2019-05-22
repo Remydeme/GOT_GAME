@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/sound">
+        <file>sounds/alien-gun.wav</file>
+        <file>sounds/auloster.mp3</file>
+        <file>sounds/gun.wav</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>Spaceship-shooter-environment/spritesheets/enemy-big.png</file>
+        <file>Spaceship-shooter-environment/spritesheets/enemy-medium.png</file>
+        <file>Spaceship-shooter-environment/spritesheets/enemy-small.png</file>
+        <file>Spaceship-shooter-environment/spritesheets/explosion.png</file>
+        <file>Spaceship-shooter-environment/spritesheets/laser-bolts.png</file>
+        <file>Spaceship-shooter-environment/spritesheets/power-up.png</file>
+        <file>Spaceship-shooter-environment/spritesheets/ship.png</file>
+        <file>Spaceship-shooter-environment/backgrounds/clouds-transparent.png</file>
+        <file>Spaceship-shooter-environment/backgrounds/clouds.png</file>
+        <file>Spaceship-shooter-environment/background.png</file>
+    </qresource>
+</RCC>

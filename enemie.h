@@ -6,7 +6,7 @@
 #include <QGraphicsView>
 #include <QObject>
 #include "Avion.h"
-
+#include "gamemanager.h"
 
 class Enemie : public QObject, public QGraphicsPixmapItem {
 

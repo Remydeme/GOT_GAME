@@ -3,6 +3,8 @@
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
 
+#define SHIP_IMAGE_PATH ":/images/Spaceship-shooter-environment/spritesheets/ship.png"
+
 class Avion : public QGraphicsPixmapItem {
 
     enum move : int32_t {
@@ -11,6 +13,7 @@ class Avion : public QGraphicsPixmapItem {
 
     enum mana : int {
         MANA_FIRE_COST = 2,
+        MANA_RECHARGE = 15,
     };
 
 
@@ -32,10 +35,16 @@ class Avion : public QGraphicsPixmapItem {
         // this function increse the mana of the avion when it is hit by a mana object
         void playerHitByMana();
 
+        //
+        int getMana();
+
+
+
     private:
 
         int sideMoveSpeed_ = 29;
         int mana_ = 60;
         int life_ = 10;
+        int score_ = 0;
         QGraphicsScene * scene_= nullptr;
 };

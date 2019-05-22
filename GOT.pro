@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+            multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,21 +28,29 @@ CONFIG += c++11
 SOURCES += \
     avion.cpp \
     bullet.cpp \
+    button.cpp \
     enemie.cpp \
     gamemanager.cpp \
     gamescene.cpp \
+    life.cpp \
     main.cpp \
-    manarecharge.cpp
+    manarecharge.cpp \
+    manatext.cpp \
+    score.cpp
 
 HEADERS += \
     Avion.h \
     avion.h \
     bullet.h \
+    button.h \
     enemie.h \
     gamemanager.h \
     gamescene.h \
+    life.h \
     main.h \
-    manarecharge.h
+    manarecharge.h \
+    manatext.h \
+    score.h
 
 FORMS += \
         mainwindow.ui
@@ -52,8 +61,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    ../../Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/auloster.mp3 \
+    ../../Music/iTunes/iTunes Media/Music/Unknown Artist/Unknown Album/auloster.mp3 \
     ressources/Spaceship-shooter-environment/PSD/layered.psd \
     ressources/Spaceship-shooter-environment/back.png \
+    ressources/Spaceship-shooter-environment/background.jpg \
+    ressources/Spaceship-shooter-environment/background.png \
+    ressources/Spaceship-shooter-environment/background1.png \
     ressources/Spaceship-shooter-environment/backgrounds/clouds-transparent.png \
     ressources/Spaceship-shooter-environment/backgrounds/clouds.png \
     ressources/Spaceship-shooter-environment/backgrounds/desert-backgorund.png \
@@ -68,8 +82,16 @@ DISTFILES += \
     ressources/free_plane_sprite/png/BG.png \
     ressources/free_plane_sprite/png/Bullet/Bullet (1).png \
     ressources/free_plane_sprite/png/Bullet/Bullet (2).png \
+    ressources/free_plane_sprite/png/Bullet/Bullet (2).png \
+    ressources/free_plane_sprite/png/Bullet/Bullet (2).png \
+    ressources/free_plane_sprite/png/Bullet/Bullet (3).png \
+    ressources/free_plane_sprite/png/Bullet/Bullet (3).png \
     ressources/free_plane_sprite/png/Bullet/Bullet (3).png \
     ressources/free_plane_sprite/png/Bullet/Bullet (4).png \
+    ressources/free_plane_sprite/png/Bullet/Bullet (4).png \
+    ressources/free_plane_sprite/png/Bullet/Bullet (4).png \
+    ressources/free_plane_sprite/png/Bullet/Bullet (5).png \
+    ressources/free_plane_sprite/png/Bullet/Bullet (5).png \
     ressources/free_plane_sprite/png/Bullet/Bullet (5).png \
     ressources/free_plane_sprite/png/Bullet/Bullet1.png \
     ressources/free_plane_sprite/png/Plane/Dead (1).png \
@@ -77,15 +99,31 @@ DISTFILES += \
     ressources/free_plane_sprite/png/Plane/Fly (1).png \
     ressources/free_plane_sprite/png/Plane/Fly (2).png \
     ressources/free_plane_sprite/png/Plane/Fly (2).png \
+    ressources/free_plane_sprite/png/Plane/Fly (2).png \
+    ressources/free_plane_sprite/png/Plane/Fly (2).png \
     ressources/free_plane_sprite/png/Plane/Fly.png \
     ressources/free_plane_sprite/png/Plane/Shoot (1).png \
     ressources/free_plane_sprite/png/Plane/Shoot (1).png \
     ressources/free_plane_sprite/png/Plane/Shoot (2).png \
     ressources/free_plane_sprite/png/Plane/Shoot (3).png \
+    ressources/free_plane_sprite/png/Plane/Shoot (3).png \
+    ressources/free_plane_sprite/png/Plane/Shoot (3).png \
+    ressources/free_plane_sprite/png/Plane/Shoot (4).png \
+    ressources/free_plane_sprite/png/Plane/Shoot (4).png \
     ressources/free_plane_sprite/png/Plane/Shoot (4).png \
     ressources/free_plane_sprite/png/Plane/Shoot (5).png \
+    ressources/free_plane_sprite/png/Plane/Shoot (5).png \
+    ressources/free_plane_sprite/png/Plane/Shoot (5).png \
     ressources/free_plane_sprite/png/Plane/Shoot.png \
+    ressources/free_plane_sprite/png/Plane/Shoot2.png \
     ressources/free_plane_sprite/vector/BG.ai \
     ressources/free_plane_sprite/vector/BG.svg \
     ressources/free_plane_sprite/vector/Char.ai \
-    ressources/free_plane_sprite/vector/Char.svg
+    ressources/free_plane_sprite/vector/Char.svg \
+    ressources/sounds/alien-gun.wav \
+    ressources/sounds/auloster.mp3 \
+    ressources/sounds/canvasbusinessModel - copie 3 copy.key \
+    ressources/sounds/gun.wav
+
+RESOURCES += \
+    ressources/res.qrc

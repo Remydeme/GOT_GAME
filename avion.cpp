@@ -1,4 +1,3 @@
-#include "avion.h"
 #include "bullet.h"
 #include <QDebug>
 
@@ -10,7 +9,7 @@ Avion::Avion(QGraphicsScene* scene) : QGraphicsPixmapItem ()
 {
     this->scene_ = scene;
 
-    this->setPixmap(QPixmap("/Users/remy.d.w/project/GOT/ressources/Spaceship-shooter-environment/spritesheets/ship.png"));
+    this->setPixmap(QPixmap(SHIP_IMAGE_PATH));
 }
 
 void Avion::keyPressEvent(QKeyEvent *event)
@@ -18,7 +17,7 @@ void Avion::keyPressEvent(QKeyEvent *event)
     // detect a move to the left
     if (event->key() == Qt::Key_Left){
         double x_left = x() - this->sideMoveSpeed_;
-        if (x_left > 0){
+        if (x_left > 300){
             setPos(x() - this->sideMoveSpeed_ , y());
         }
         else {
@@ -35,13 +34,22 @@ void Avion::keyPressEvent(QKeyEvent *event)
                setPos((0 + this->sideMoveSpeed_ * 0.5) , y());
            }
     }
+
     if (event->key() == Qt::Key_Space){
         if (mana_ > 0){
             Bullet *bullet = new Bullet(this->scene_);
+            GameManager::instance().decreaseMana(mana::MANA_FIRE_COST);
             bullet->setPos(x() + 10,y());
             //this->collidesWithItem()
             this->scene_->addItem(bullet);
             this->mana_ -= mana::MANA_FIRE_COST;
+
+            if (bullet->getSound().state() == QMediaPlayer::PlayingState){
+                bullet->setPos(0, 0);
+            }
+            else if (bullet->getSound().state() == QMediaPlayer::PausedState){
+                bullet->play();
+            }
         }
     }
 }
@@ -53,11 +61,17 @@ void Avion::playerHit()
 
 bool Avion::isAlive()
 {
-    return true;
+    return life_ > 0;
 }
 
 void Avion::playerHitByMana()
 {
-    this->mana_ += 5;
+    this->mana_ += mana::MANA_RECHARGE;
 }
+
+int Avion::getMana()
+{
+    return mana_;
+}
+
 

@@ -30,17 +30,17 @@ void Enemie::move(){
     for (int i = 0, number_colliders = colliding_items.size(); i < number_colliders ; i++){
 
         if (typeid(*(colliding_items[i])) == typeid(Avion)){
-
+            GameManager::instance().decreaseLife();
             Avion * player = static_cast<Avion*>(colliding_items[i]);
             player->playerHit();
             if (player->isAlive() == false){
+                // game over
                 scene_->removeItem(player);
-                scene_->removeItem(this);
                 delete player;
-                delete this;
                 return;
             }
-
+            scene_->removeItem(this);
+            delete this;
         }
     }
 

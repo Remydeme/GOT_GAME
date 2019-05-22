@@ -1,11 +1,12 @@
 #include "manarecharge.h"
 #include <QTimer>
+#include "gamemanager.h"
 
 ManaRecharge::ManaRecharge(QGraphicsScene *scene) : QGraphicsPixmapItem ()
 {
 
     this->scene_ = scene;
-    this->setPixmap(QPixmap("/Users/remy.d.w/project/GOT/ressources/Spaceship-shooter-environment/spritesheets/power-up.png"));
+    this->setPixmap(QPixmap(MANA_RECHARGE_IMAGE_PATH));
 
     // connect
     QTimer *timer = new QTimer();
@@ -28,6 +29,7 @@ void ManaRecharge::move()
 
             Avion *player = static_cast<Avion*>(colliding_items[i]);
             player->playerHitByMana();
+            GameManager::instance().rechargeMana(15);
             // remove the bullet
             scene_->removeItem(this);
 

@@ -8,6 +8,7 @@
 
 #include "Avion.h"
 
+#define MANA_RECHARGE_IMAGE_PATH ":/images/Spaceship-shooter-environment/spritesheets/power-up.png"
 
 class ManaRecharge : public QObject, public QGraphicsPixmapItem {
 
