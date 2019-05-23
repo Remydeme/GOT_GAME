@@ -12,7 +12,14 @@ public:
     Score(QGraphicsItem *parent = nullptr);
 
     void increaseScore();
+
     void decreaseScore();
+
+    void reset();
+
+    int getScore(){
+        return score_;
+    }
 
 private:
 

@@ -38,13 +38,15 @@ class Avion : public QGraphicsPixmapItem {
         //
         int getMana();
 
+        int getLife();
+
 
 
     private:
 
         int sideMoveSpeed_ = 29;
         int mana_ = 60;
-        int life_ = 10;
+        int life_ = 3;
         int score_ = 0;
         QGraphicsScene * scene_= nullptr;
 };

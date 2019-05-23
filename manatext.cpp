@@ -24,4 +24,5 @@ void ManaText::decreaseScore(int shootCost)
 
 void ManaText::setMana(int mana){
     this->score_ = mana;
+    setPlainText("Mana : " + QString::number(this->score_));
 }

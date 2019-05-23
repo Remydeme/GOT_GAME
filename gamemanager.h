@@ -5,6 +5,7 @@
 #include <QKeyEvent>
 #include <QMediaPlayer>
 #include <QGraphicsScene>
+#include <QString>
 #include "Avion.h"
 #include "gamescene.h"
 #include <QObject>
@@ -40,6 +41,10 @@ class GameManager : public QObject
 
         GameManager(GameManager& ){}
 
+        void gameOver();
+
+        void resetTextItems();
+
 
         // create singleton
 
@@ -58,7 +63,7 @@ class GameManager : public QObject
         };
 
         enum player : int {
-            PLAYER_LIFE = 5,
+            PLAYER_LIFE = 3,
         };
 
         // Value for timer timeout()  function
@@ -80,6 +85,8 @@ class GameManager : public QObject
 
     public:
 
+        // get score
+        int getScore();
 
         // show the scene
         void show();
@@ -101,8 +108,11 @@ class GameManager : public QObject
 
         void rechargeMana(int manaRecharge);
 
-        void decreaseMana(int shootCost);
         // handle the score
+        void decreaseMana(int shootCost);
+
+        // display game over window
+        void displayGameOverWindow(QString text);
 
 
     public slots:
@@ -118,6 +128,20 @@ class GameManager : public QObject
 
         // close the windows game
         void close();
+
+        // restart the game
+        void restartGame();
+
+        // set level
+        void setLevelWinter();
+
+        void setLevelJhon();
+
+        void setLevelASU();
+
+        // slot that display the panel in order to choose the levels
+        void selectLevelPanel();
+
 
 
     private:

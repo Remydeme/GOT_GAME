@@ -20,3 +20,7 @@ void Score::decreaseScore()
     this->score_ -= 1;
     setPlainText("Score : " + QString::number(this->score_));
 }
+
+void Score::reset(){
+    score_ = 0;
+}

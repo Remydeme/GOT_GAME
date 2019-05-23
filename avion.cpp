@@ -10,7 +10,9 @@ Avion::Avion(QGraphicsScene* scene) : QGraphicsPixmapItem ()
     this->scene_ = scene;
 
     this->setPixmap(QPixmap(SHIP_IMAGE_PATH));
+
 }
+
 
 void Avion::keyPressEvent(QKeyEvent *event)
 {
@@ -72,6 +74,11 @@ void Avion::playerHitByMana()
 int Avion::getMana()
 {
     return mana_;
+}
+
+int Avion::getLife()
+{
+    return life_;
 }
 
 
