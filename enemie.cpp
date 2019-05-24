@@ -33,26 +33,28 @@ void Enemie::move(){
             Avion * player = static_cast<Avion*>(colliding_items[i]);
             player->playerHit();
             if (player->isAlive() == false){
-                scene_->removeItem(player);
-                delete player;
 
                 QString *text = nullptr;
 
                 int score = GameManager::instance().getScore();
 
-                if (score > 50){
-                    text = new QString("You are not too bad your with your " + QString(score) + " :) !");
+                QString str_score = QString::number(score);
+
+                 if (score > 50){
+                    text = new QString("You are not too bad your with your " + QString(str_score) + "  :) !");
                 }
                 else if (score > 200){
-                    text = new QString("Oh! Got damn !! you are good !! score : " + QString(score) + " ;) !");
+                    text = new QString("Oh! Got damn !! you are good !! Score  " + QString(str_score) + "  ;) !");
                 }
                 else if (score > 400){
-                    text = new QString("A Stark ! take the throne with your " + QString(score) + " O_* !");
+                    text = new QString("A Stark ! take the throne with your " + QString(str_score) + "  O_* !");
                 }
                 else {
-                    text = new QString("Got dammn! It's realy bad Score" + QString(score) + " O_* !");
+                    text = new QString("Got dammn! It's a realy bad Score  " + QString(str_score) + "  *_* !");
                 }
                 GameManager::instance().displayGameOverWindow(*text);
+                delete player;
+                scene_->removeItem(player);
                 return;
             }
             scene_->removeItem(this);

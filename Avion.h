@@ -7,9 +7,8 @@
 
 class Avion : public QGraphicsPixmapItem {
 
-    enum move : int32_t {
-        JUMP_HIGH = 5,
-    };
+
+
 
     enum mana : int {
         MANA_FIRE_COST = 2,

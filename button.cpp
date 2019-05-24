@@ -16,7 +16,6 @@ Button::Button(QString name, QGraphicsItem *parent): QGraphicsRectItem(parent){
     int xPos = static_cast<int>(rect().width()/2 - text->boundingRect().width()/2);
     int yPos = static_cast<int>(rect().height()/2 - text->boundingRect().height()/2);
     text->setPos(xPos,yPos);
-
     // allow responding to hover events
     setAcceptHoverEvents(true);
 }

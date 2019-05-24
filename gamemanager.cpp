@@ -13,7 +13,7 @@
 #include <QTimer>
 #include <QObject>
 #include <array>
-
+#include <QLineEdit>
 
 
 #include "score.h"
@@ -90,6 +90,32 @@ void GameManager::selectLevelPanel()
         scene_->addItem(levelDorgo);
 }
 
+void GameManager::savePanel()
+{
+    scene_->clear();
+    // pop up semi transparent panel
+    drawPanel(0, 0, 1024, 768, Qt::black, 0.65);
+
+    // draw panel
+    drawPanel(312, 184, 500, 400, Qt::lightGray, 0.75);
+
+    // create playAgain button
+    QLineEdit* pseudo = new QLineEdit("Pseudo");
+    connect(pseudo,SIGNAL(clicked()), this, SLOT(restartGame()));
+
+    // create quit button
+    Button* quit = new Button(QString("Quit"));
+    quit->setPos(500,375);
+    scene_->addItem(quit);
+    connect(quit,SIGNAL(clicked()),this,SLOT(close()));
+
+    // create quit button
+    Button* save = new Button(QString("Save"));
+    save->setPos(500,375);
+    scene_->addItem(save);
+    connect(quit,SIGNAL(clicked()),this,SLOT(close()));
+}
+
 void GameManager::restartGame()
 {
     scene_->clear();
@@ -99,19 +125,27 @@ void GameManager::restartGame()
 void GameManager::setLevelWinter(){
     scene_->clear();
     level_ = MOVE_UPDATE_NOVICE;
+    this->enemie_generation_speed_ = enemieGenerationSpeed::MOVE_GEN_NOVICE;
     start();
 }
 
 void GameManager::setLevelJhon(){
     scene_->clear();
     level_ = MOVE_UPDATE_MEDIUM;
+    this->enemie_generation_speed_ = enemieGenerationSpeed::MOVE_GEN_MEDIUM;
     start();
 }
 
 void GameManager::setLevelASU(){
     scene_->clear();
     level_ = MOVE_UPDATE_INSANE;
+    this->enemie_generation_speed_ = enemieGenerationSpeed::MOVE_GEN_INSANE;
     start();
+}
+
+
+void saveScore(QString){
+
 }
 
 
@@ -122,23 +156,29 @@ void GameManager::displayGameOverWindow(QString text)
     drawPanel(0, 0, 1024, 768, Qt::black, 0.65);
 
     // draw panel
-    drawPanel(312, 184, 400, 400, Qt::lightGray, 0.75);
+    drawPanel(312, 184, 500, 400, Qt::lightGray, 0.75);
 
     // create playAgain button
     Button* playAgain = new Button(QString("Play Again"));
-    playAgain->setPos(410, 300);
+    playAgain->setPos(500, 300);
     scene_->addItem(playAgain);
     connect(playAgain,SIGNAL(clicked()), this, SLOT(restartGame()));
 
     // create quit button
     Button* quit = new Button(QString("Quit"));
-    quit->setPos(410,375);
+    quit->setPos(500,375);
     scene_->addItem(quit);
+    connect(quit,SIGNAL(clicked()),this,SLOT(close()));
+
+    // create quit button
+    Button* save = new Button(QString("Save"));
+    save->setPos(500,450);
+    scene_->addItem(save);
     connect(quit,SIGNAL(clicked()),this,SLOT(close()));
 
     // create text annoucning winner
     QGraphicsTextItem* overText = new QGraphicsTextItem(text);
-    overText->setPos(400,225);
+    overText->setPos(500,225);
     scene_->addItem(overText);
 }
 
@@ -193,11 +233,11 @@ void GameManager::start(){
 
      QTimer * timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(addEnemie()));
-    timer->start(200);
+    timer->start(this->enemie_generation_speed_);
 
     QTimer * timerMana = new QTimer();
     connect(timerMana, SIGNAL(timeout()), this, SLOT(addMana()));
-    timerMana->start(400);
+    timerMana->start(500);
 }
 
 void GameManager::close()

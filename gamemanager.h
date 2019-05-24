@@ -62,6 +62,13 @@ class GameManager : public QObject
             MOVE_UPDATE_INSANE = 1,
         };
 
+        enum enemieGenerationSpeed : int
+        {
+            MOVE_GEN_NOVICE = 300,
+            MOVE_GEN_MEDIUM = 200,
+            MOVE_GEN_INSANE = 70,
+        };
+
         enum player : int {
             PLAYER_LIFE = 3,
         };
@@ -104,6 +111,7 @@ class GameManager : public QObject
         void decreaseLife();
 
 
+
         // Handle Mana
 
         void rechargeMana(int manaRecharge);
@@ -143,6 +151,10 @@ class GameManager : public QObject
         void selectLevelPanel();
 
 
+        // save panel
+        void savePanel();
+
+
 
     private:
 
@@ -156,6 +168,7 @@ class GameManager : public QObject
        ManaText *manaText_ = nullptr;
        Score *score_ = nullptr;
        Life *life_ = nullptr;
+       int enemie_generation_speed_ = 200;
        int level_ = enemie::MOVE_UPDATE_INSANE;
        bool gameOver_ = false;
 };
